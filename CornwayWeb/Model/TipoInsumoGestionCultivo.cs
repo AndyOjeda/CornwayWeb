@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace CornwayWeb.Model
 {
@@ -6,8 +7,10 @@ namespace CornwayWeb.Model
     {
         [Key]
         public int IdTipoInsumoGestionCultivo { get; set; }
+        [MaxLength(50)]
         public required string Nombre { get; set; }
 
-        public bool Activo { get; set; }
+        [JsonIgnore]
+        public bool IsActive { get; set; }
     }
 }
