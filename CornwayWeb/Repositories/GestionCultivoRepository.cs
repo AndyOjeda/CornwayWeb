@@ -13,7 +13,8 @@ namespace CornwayWeb.Repositories
         Task<GestionCultivo> PutGestionCultivo(GestionCultivo gestionCultivo);
         Task<GestionCultivo> DeleteGestionCultivo(int id);
     }
-    public class GestionCultivoRepository
+    public class GestionCultivoRepository : IGestionCultivoRepository
     {
+
     }
 }
