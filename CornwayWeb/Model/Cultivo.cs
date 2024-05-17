@@ -9,11 +9,15 @@ namespace CornwayWeb.Model
 
         [Key]
         public int IdCultivo { get; set; }
+
         [ForeignKey(nameof(Usuario))]
         public required int IdUsuario { get; set; }
+
         [ForeignKey(nameof(TipoCultivo))]
         public required int IdTipoCultivo { get; set; }
+
         public required string Nombre { get; set; }
+
         public required string Area { get; set; }
         
 

@@ -14,7 +14,7 @@ namespace CornwayWeb.Model
         public required int IdCultivo { get; set; }
         [ForeignKey(nameof(TipoGestionCultivo))]
         public required int IdTipoGestionCultivo { get; set; }
-        public required DateOnly Fecha { get; set; }
+        public required DateTime Fecha { get; set; }
         public required string Comentario { get; set; }
 
         public virtual Cultivo? Cultivo { get; set; }

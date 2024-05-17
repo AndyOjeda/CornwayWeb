@@ -8,8 +8,8 @@ namespace CornwayWeb.Repositories
     {
         Task<IEnumerable<Cultivo>> GetCultivos();
         Task<Cultivo?> GetCultivo(int id);
-        Task<Cultivo> GetCultivos(Cultivo cultivo);
         Task<Cultivo> CreateCultivo(Cultivo cultivo);
+        Task<Cultivo> PutCultivo(Cultivo cultivo);
         Task<Cultivo?> DeleteCultivo(int id);
     }
     public class CultivoRepository : ICultivoRepository
@@ -25,10 +25,12 @@ namespace CornwayWeb.Repositories
         {
             return await _db.Cultivos.FindAsync(id);
         }
+
         public async Task<IEnumerable<Cultivo>> GetCultivos()
         {
             return await _db.Cultivos.ToListAsync();
         }
+
         public async Task<Cultivo> CreateCultivo(Cultivo cultivo)
         {
             _db.Cultivos.Add(cultivo);

@@ -11,13 +11,13 @@ namespace CornwayWeb.Services
         Task<Cosecha> CreateCosecha(
             int IdCultivo,
             int Cantidad,
-            string Fecha
+            DateTime Fecha
             );
         Task<Cosecha> PutCosecha(
             int IdCosecha,
             int? IdCultivo,
             int? Cantidad,
-            string? Fecha
+            DateTime? Fecha
             );
         Task<Cosecha?> DeleteCosecha(int id);
     }
@@ -35,7 +35,7 @@ namespace CornwayWeb.Services
         public async Task<Cosecha> CreateCosecha(
              int IdCultivo,
              int Cantidad,
-             string Fecha
+             DateTime Fecha
              )
         {
             return await cosechaRepository.CreateCosecha(new Cosecha
@@ -50,7 +50,7 @@ namespace CornwayWeb.Services
             int IdCosecha,
             int? IdCultivo,
             int? Cantidad,
-            string? Fecha
+            DateTime? Fecha
             )
         {
             Cosecha? cosecha = await cosechaRepository.GetCosecha(IdCosecha);
