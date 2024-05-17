@@ -7,7 +7,7 @@ namespace CornwayWeb.Model
 {
     public class TipoUsuario
     {
-        [Key] public int IdInsumoCultivo { get; set; }
+        [Key] public int IdTipoUsuario { get; set; }
         [MaxLength(50)]
         public required string Nombre { get; set; }
         [JsonIgnore]

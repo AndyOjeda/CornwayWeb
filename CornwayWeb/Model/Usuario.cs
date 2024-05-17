@@ -11,7 +11,7 @@ namespace CornwayWeb.Model
         public required string Nombres { get; set; }
         [MaxLength(50)]
         public required string Apellidos { get; set; }
-        [MaxLength(100)]
+        [MaxLength(50)]
         public required string Correo { get; set; }
         [MaxLength(50)]
         public required string Clave { get; set; }

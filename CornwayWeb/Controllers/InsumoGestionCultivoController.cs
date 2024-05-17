@@ -43,9 +43,9 @@ namespace CornwayWeb.Controllers
             [Required] int IdInsumoGestionCultivo,
             [Required] int IdGestionCultivo,
             [Required] int? IdTipoInsumoGestionCultivo,
-            [Required][MaxLength(50)] string? Nombre,
-            [Required][MaxLength(50)] string? Dosis,
-            [Required][MaxLength(50)] string? Unidad
+            [MaxLength(50)] string? Nombre,
+            [MaxLength(50)] string? Dosis,
+            [MaxLength(50)] string? Unidad
                        )
         {
             var insumoGestionCultivo = await insumoGestionCultivoService.PutInsumoGestionCultivo(IdInsumoGestionCultivo, IdGestionCultivo,IdTipoInsumoGestionCultivo, Nombre, Dosis, Unidad);

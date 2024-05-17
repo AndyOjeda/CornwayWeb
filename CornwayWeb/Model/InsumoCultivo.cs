@@ -9,6 +9,7 @@ namespace CornwayWeb.Models
     public class InsumoCultivo
     {
         [Key] public int IdInsumoCultivo { get; set; }
+
         [ForeignKey(nameof(TipoInsumoGestionCultivo))]
         public required int IdTipoInsumoGestionCultivo { get; set; }
         public required int Cantidad { get; set; }

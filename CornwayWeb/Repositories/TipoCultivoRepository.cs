@@ -55,6 +55,6 @@ namespace CornwayWeb.Repositories
             return tipoCultivo;
         }
     }
-    {
-    }
+    
 }
+

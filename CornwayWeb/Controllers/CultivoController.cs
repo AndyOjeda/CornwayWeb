@@ -44,8 +44,8 @@ namespace CornwayWeb.Controllers
             [Required] int IdCultivo,
             [Required] int? IdUsuario,
             [Required] int? IdTipoCultivo,
-            [Required][MaxLength(50)] string? Nombre,
-            [Required][MaxLength(50)] string? Area
+            [MaxLength(50)] string? Nombre,
+            [MaxLength(50)] string? Area
                        )
         {
             var cultivo = await cultivoService.PutCultivo(IdCultivo, IdUsuario, IdTipoCultivo, Nombre, Area);

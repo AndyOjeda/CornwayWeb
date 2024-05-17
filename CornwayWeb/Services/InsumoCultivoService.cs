@@ -34,9 +34,9 @@ namespace CornwayWeb.Services
         }
 
         public async Task<InsumoCultivo> CreateInsumoCultivo(
-                       int IdTipoInsumoGestionCultivo,
-                                  int Cantidad
-                       )
+            int IdTipoInsumoGestionCultivo,
+            int Cantidad
+            )
         {
             return await insumoCultivoRepository.CreateInsumoCultivo(new InsumoCultivo
             {

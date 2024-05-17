@@ -21,9 +21,9 @@ namespace CornwayWeb.Repositories
             _db = db;
         }
 
-        public async  Task<GestionCultivo?> GestionCultivo(int id)
+        public async  Task<GestionCultivo?> GetGestionCultivo(int id)
         {
-            return await _db.GestionCultivos.FindAsync(id);
+            return await _db.GestionCuiltivos.FindAsync(id);
         }
 
         public async Task<IEnumerable<GestionCultivo>> GetGestionCultivos()
