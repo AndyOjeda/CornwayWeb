@@ -15,9 +15,9 @@ namespace CornwayWeb.Model
 
         [ForeignKey(nameof(TipoCultivo))]
         public required int IdTipoCultivo { get; set; }
-
+        [MaxLength(50)]
         public required string Nombre { get; set; }
-
+        [MaxLength(50)]
         public required string Area { get; set; }
         
 

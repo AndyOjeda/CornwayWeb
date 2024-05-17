@@ -29,7 +29,7 @@ namespace CornwayWeb.Controllers
             [Required] int IdCultivo,
             [Required] int IdTipoGestionCultivo,
             [Required] DateTime Fecha,
-            [Required][MaxLength(40)] string Comentario
+            [Required][MaxLength(50)] string Comentario
             )
         {
             var gestionCultivo = await gestionCultivoService.CreateGestionCultivo(IdCultivo, IdTipoGestionCultivo, Fecha, Comentario);
@@ -42,7 +42,7 @@ namespace CornwayWeb.Controllers
             [Required] int? IdCultivo,
             [Required] int? IdTipoGestionCultivo,
             [Required] DateTime? Fecha,
-            [MaxLength(40)] string? Comentario
+            [Required][MaxLength(50)] string? Comentario
             )
         {
             var gestionCultivo = await gestionCultivoService.PutGestionCultivo(IdGestionCultivo, IdCultivo, IdTipoGestionCultivo, Fecha, Comentario);

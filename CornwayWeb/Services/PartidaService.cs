@@ -14,6 +14,7 @@ namespace CornwayWeb.Services
             int IdPartida,
             int? IdCosecha
             );
+        Task<Partida?> DeletePartida(int id);
     }
     public class PartidaService(PartidaRepository partidaRepository) : IPartidaService
     {
@@ -48,7 +49,11 @@ namespace CornwayWeb.Services
             partida.IdCosecha = IdCosecha ?? partida.IdCosecha;
             return await partidaRepository.PutPartida(partida);
         }
+
+        public async Task<Partida?> DeletePartida(int id)
+        {
+            return await partidaRepository.DeletePartida(id);
+        }
     }
-    {
-    }
+    
 }
