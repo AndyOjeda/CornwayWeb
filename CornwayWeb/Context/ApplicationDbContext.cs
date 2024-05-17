@@ -8,7 +8,7 @@ namespace CornwayWeb.Context
     {
         public DbSet<Cosecha> Cosechas { get; set; }
         public DbSet<Cultivo> Cultivos { get; set; }
-        public DbSet<GestionCultivo> GestionCuiltivos { get; set; }
+        public DbSet<GestionCultivo> GestionCultivos { get; set; }
         public DbSet<InsumoCultivo> InsumoCultivos { get; set; }
         public DbSet<InsumoGestionCultivo> InsumoGestionCultivos { get; set; }
         public DbSet<Partida> Partidas { get; set; }
@@ -17,6 +17,7 @@ namespace CornwayWeb.Context
         public DbSet<TipoInsumoGestionCultivo> TipoInsumoGestionCultivos { get; set; }
         public DbSet<TipoUsuario> TipoUsuarios { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -43,7 +44,5 @@ namespace CornwayWeb.Context
             modelBuilder.Entity<Usuario>().HasQueryFilter(e => e.IsActive);
 
         }
-
-
     }
 }

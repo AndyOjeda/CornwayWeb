@@ -8,14 +8,15 @@ namespace CornwayWeb.Services
         Task<IEnumerable<Usuario>> GetUsuarios();
         Task<Usuario?> GetUsuario(int id);
         Task<Usuario> CreateUsuario(
+            int IdTipoUsuario,
             string Nombres,
             string Apellidos,
             string Correo,
             string Clave
                        );
         Task<Usuario> PutUsuario(
-
             int IdUsuario,
+            int? IdTipoUsuario,
             string? Nombres,
             string? Apellidos,
             string? Correo,
@@ -23,7 +24,7 @@ namespace CornwayWeb.Services
                        );
         Task<Usuario?> DeleteUsuario(int id);
     }
-    public class UsuarioService(UsuarioRepository usuarioRepository) : IUsuarioService
+    public class UsuarioService(IUsuarioRepository usuarioRepository) : IUsuarioService
     {
         public async Task<Usuario?> GetUsuario(int id)
         {
@@ -36,6 +37,7 @@ namespace CornwayWeb.Services
         }
 
         public async Task<Usuario> CreateUsuario(
+            int IdTipoUsuario,
             string Nombres,
             string Apellidos,
             string Correo,
@@ -44,6 +46,7 @@ namespace CornwayWeb.Services
         {
             return await usuarioRepository.CreateUsuario(new Usuario
             {
+                IdTipoUsuario = IdTipoUsuario,
                 Nombres = Nombres,
                 Apellidos = Apellidos,
                 Correo = Correo,
@@ -53,6 +56,7 @@ namespace CornwayWeb.Services
 
         public async Task<Usuario> PutUsuario(
             int IdUsuario,
+            int? IdTipoUsuario,
             string? Nombres,
             string? Apellidos,
             string? Correo,
@@ -62,6 +66,7 @@ namespace CornwayWeb.Services
             Usuario? usuario = await usuarioRepository.GetUsuario(IdUsuario);
             if (usuario == null) throw new Exception("Usuario not found");
 
+            usuario.IdTipoUsuario = IdTipoUsuario ?? usuario.IdTipoUsuario;
             usuario.Nombres = Nombres ?? usuario.Nombres;
             usuario.Apellidos = Apellidos ?? usuario.Apellidos;
             usuario.Correo = Correo ?? usuario.Correo;

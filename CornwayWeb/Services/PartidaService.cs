@@ -16,7 +16,7 @@ namespace CornwayWeb.Services
             );
         Task<Partida?> DeletePartida(int id);
     }
-    public class PartidaService(PartidaRepository partidaRepository) : IPartidaService
+    public class PartidaService(IPartidaRepository partidaRepository) : IPartidaService
     {
         public async Task<Partida?> GetPartida(int id)
         {

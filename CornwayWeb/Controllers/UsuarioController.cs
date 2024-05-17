@@ -26,26 +26,28 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateUsuario(
+            [Required] int IdTipoUsuario,
             [Required][MaxLength(50)] string Nombres,
             [Required][MaxLength(50)] string Apellidos,
-            [Required][MaxLength(50)] string Correo,
+            [Required][MaxLength(300)][EmailAddress(ErrorMessage = "Invalid email address")] string Correo,
             [Required][MaxLength(50)] string Clave
             )
         {
-            var usuario = await usuarioService.CreateUsuario(Nombres, Apellidos, Correo, Clave);
+            var usuario = await usuarioService.CreateUsuario(IdTipoUsuario, Nombres, Apellidos, Correo, Clave);
             return CreatedAtAction(nameof(GetUsuario), new { id = usuario.IdUsuario }, usuario);
         }
 
         [HttpPut]
         public async Task<IActionResult> PutUsuario(
             [Required] int IdUsuario,
-            [Required][MaxLength(50)] string Nombres,
-            [Required][MaxLength(50)] string Apellidos,
-            [Required][MaxLength(50)] string Correo,
-            [Required][MaxLength(50)] string Clave
-                       )
+            [Required] int? IdTipoUsuario,
+            [MaxLength(50)] string? Nombres,
+            [MaxLength(50)] string? Apellidos,
+            [MaxLength(300)][EmailAddress(ErrorMessage = "Invalid email address")] string? Correo,
+            [MaxLength(50)] string? Clave
+            )
         {
-            var usuario = await usuarioService.PutUsuario(IdUsuario, Nombres, Apellidos, Correo, Clave);
+            var usuario = await usuarioService.PutUsuario(IdUsuario, IdTipoUsuario, Nombres, Apellidos, Correo, Clave);
             return Ok(usuario);
         }
 

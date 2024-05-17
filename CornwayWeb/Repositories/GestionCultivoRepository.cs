@@ -23,17 +23,17 @@ namespace CornwayWeb.Repositories
 
         public async  Task<GestionCultivo?> GetGestionCultivo(int id)
         {
-            return await _db.GestionCuiltivos.FindAsync(id);
+            return await _db.GestionCultivos.FindAsync(id);
         }
 
         public async Task<IEnumerable<GestionCultivo>> GetGestionCultivos()
         {
-            return await _db.GestionCuiltivos.ToListAsync();
+            return await _db.GestionCultivos.ToListAsync();
         }
 
         public async Task<GestionCultivo> CreateGestionCultivo(GestionCultivo gestionCultivo)
         {
-            _db.GestionCuiltivos.Add(gestionCultivo);
+            _db.GestionCultivos.Add(gestionCultivo);
             await _db.SaveChangesAsync();
             return gestionCultivo;
         }
@@ -47,7 +47,7 @@ namespace CornwayWeb.Repositories
 
         public async Task<GestionCultivo?> DeleteGestionCultivo(int id)
         {
-            GestionCultivo? gestionCultivo = await _db.GestionCuiltivos.FindAsync(id);
+            GestionCultivo? gestionCultivo = await _db.GestionCultivos.FindAsync(id);
             if (gestionCultivo == null) return gestionCultivo;
             gestionCultivo.IsActive = false;
             _db.Entry(gestionCultivo).State = EntityState.Modified;

@@ -21,7 +21,7 @@ namespace CornwayWeb.Services
             );
         Task<InsumoCultivo?> DeleteInsumoCultivo(int id);
     }
-    public class InsumoCultivoService(InsumoCultivoRepository insumoCultivoRepository) : IInsumoCultivoService
+    public class InsumoCultivoService(IInsumoCultivoRepository insumoCultivoRepository) : IInsumoCultivoService
     {
         public async Task<InsumoCultivo?> GetInsumoCultivo(int id)
         {
