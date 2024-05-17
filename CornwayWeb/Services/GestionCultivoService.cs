@@ -6,7 +6,7 @@ namespace CornwayWeb.Services
     public interface IGestionCultivoService
     {
         Task<IEnumerable<GestionCultivo>> GetGestionCultivos();
-        Task<GestionCultivo?> GetGestionCultivo();
+        Task<GestionCultivo?> GetGestionCultivo(int id);
         Task<GestionCultivo> CreateGestionCultivo(
             int IdCultivo,
             int IdTipoGestionCultivo,
@@ -15,10 +15,10 @@ namespace CornwayWeb.Services
             );
         Task<GestionCultivo> PutGestionCultivo(
             int IdGestionCultivo,
-            int IdCultivo,
-            int IdTipoGestionCultivo,
-            DateTime Fecha,
-            string comentario
+            int? IdCultivo,
+            int? IdTipoGestionCultivo,
+            DateTime? Fecha,
+            string? comentario
             );
         Task<GestionCultivo?> DeleteGestionCultivo(int id);
     }
@@ -52,13 +52,13 @@ namespace CornwayWeb.Services
 
         public async Task<GestionCultivo> PutGestionCultivo(
             int IdGestionCultivo,
-            int IdCultivo,
-            int IdTipoGestionCultivo,
-            DateTime Fecha,
-            string comentario
+            int? IdCultivo,
+            int? IdTipoGestionCultivo,
+            DateTime? Fecha,
+            string? comentario
             )
         {
-            GestionCultivo gestionCultivo = await gestionCultivoRepository.PutGestionCultivo(IdGestionCultivo);
+            GestionCultivo? gestionCultivo = await gestionCultivoRepository.GetGestionCultivo(IdGestionCultivo);
             if(gestionCultivo == null) throw new Exception("Gestion de cultivo no encontrada");
 
             gestionCultivo.IdCultivo = IdCultivo ?? gestionCultivo.IdCultivo;
