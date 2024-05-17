@@ -10,11 +10,11 @@ namespace CornwayWeb.Models
     {
         [Key] public int IdInsumoCultivo { get; set; }
 
-        [ForeignKey(nameof(TipoInsumoGestionCultivo))]
+        [ForeignKey(nameof(TiposInsumoGestionCultivo))]
         public required int IdTipoInsumoGestionCultivo { get; set; }
         public required int Cantidad { get; set; }
 
-        public virtual TipoInsumoGestionCultivo? TipoInsumoGestionCultivo { get; set; }
+        public virtual TiposInsumoGestionCultivo? TiposInsumoGestionCultivo { get; set; }
         [JsonIgnore]
         public bool IsActive { get; set; } = true;
     }

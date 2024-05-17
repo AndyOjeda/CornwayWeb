@@ -15,7 +15,7 @@ namespace CornwayWeb.Model
 		[MaxLength(10)]
 		public required DateTime Fecha { get; set; }
 
-		public virtual Cultivo? Cultivo { get; set; }
+		public virtual Cultivos? Cultivo { get; set; }
 		[JsonIgnore]
 		public bool IsActive { get; set; } = true;
 	}

@@ -7,34 +7,36 @@ namespace CornwayWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InsumoGestionCultivoController(IInsumoGestionCultivoService insumoGestionCultivoService) : ControllerBase
+    public class InsumoGestionCultivoController(IInsumosGestionCultivoService insumosGestionCultivoService) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetInsumoGestionCultivos()
+        public async Task<IActionResult> GetInsumosGestionCultivos()
         {
-            IEnumerable<InsumoGestionCultivo> insumoGestionCultivos = await insumoGestionCultivoService.GetInsumoGestionCultivos();
-            return Ok(insumoGestionCultivos);
+            IEnumerable<InsumosGestionCultivo> insumosGestionCultivos = await insumosGestionCultivoService.GetInsumosGestionCultivos();
+            return Ok(insumosGestionCultivos);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetInsumoGestionCultivo(int id)
         {
-            InsumoGestionCultivo? insumoGestionCultivo = await insumoGestionCultivoService.GetInsumoGestionCultivo(id);
-            if(insumoGestionCultivo == null) return NotFound();
+            InsumosGestionCultivo? insumoGestionCultivo = await insumosGestionCultivoService.GetInsumoGestionCultivo(id);
+            if (insumoGestionCultivo == null)
+            {
+                return NotFound();
+            }
             return Ok(insumoGestionCultivo);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateInsumoGestionCultivo(
             [Required] int IdGestionCultivo,
-            [Required] int IdTipoInsumoGestionCultivo,
+            [Required] int IdInsumoCultivo,
             [Required][MaxLength(50)] string Nombre,
-            [Required][MaxLength(50)] string Dosis,
+            [Required] double Dosis,
             [Required][MaxLength(50)] string Unidad
-            
-                       )
+                                             )
         {
-            var insumoGestionCultivo = await insumoGestionCultivoService.CreateInsumoGestionCultivo(IdGestionCultivo, IdTipoInsumoGestionCultivo, Nombre, Dosis, Unidad);
+            var insumoGestionCultivo = await insumosGestionCultivoService.CreateInsumoGestionCultivo(IdGestionCultivo, IdInsumoCultivo, Nombre, Dosis, Unidad);
             return CreatedAtAction(nameof(GetInsumoGestionCultivo), new { id = insumoGestionCultivo.IdInsumoGestionCultivo }, insumoGestionCultivo);
         }
 
@@ -42,21 +44,24 @@ namespace CornwayWeb.Controllers
         public async Task<IActionResult> PutInsumoGestionCultivo(
             [Required] int IdInsumoGestionCultivo,
             [Required] int IdGestionCultivo,
-            [Required] int? IdTipoInsumoGestionCultivo,
-            [MaxLength(50)] string? Nombre,
-            [MaxLength(50)] string? Dosis,
-            [MaxLength(50)] string? Unidad
-                       )
+            [Required] int IdInsumoCultivo,
+            [MaxLength(50)] string Nombre,
+            [Required] double Dosis,
+            [MaxLength(50)] string Unidad
+                                                    )
         {
-            var insumoGestionCultivo = await insumoGestionCultivoService.PutInsumoGestionCultivo(IdInsumoGestionCultivo, IdGestionCultivo,IdTipoInsumoGestionCultivo, Nombre, Dosis, Unidad);
+            var insumoGestionCultivo = await insumosGestionCultivoService.PutInsumoGestionCultivo(IdInsumoGestionCultivo, IdGestionCultivo, IdInsumoCultivo, Nombre, Dosis, Unidad);
             return Ok(insumoGestionCultivo);
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteInsumoGestionCultivo(int id)
         {
-            var insumoGestionCultivo = await insumoGestionCultivoService.DeleteInsumoGestionCultivo(id);
-            if(insumoGestionCultivo == null) return NotFound();
+            var insumoGestionCultivo = await insumosGestionCultivoService.DeleteInsumoGestionCultivo(id);
+            if (insumoGestionCultivo == null)
+            {
+                return NotFound();
+            }
             return Ok(insumoGestionCultivo);
         }
     }

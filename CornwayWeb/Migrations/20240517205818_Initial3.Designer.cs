@@ -4,6 +4,7 @@ using CornwayWeb.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CornwayWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240517205818_Initial3")]
+    partial class Initial3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,8 +84,6 @@ namespace CornwayWeb.Migrations
                     b.HasKey("IdCultivo");
 
                     b.HasIndex("IdTipoCultivo");
-
-                    b.HasIndex("IdUsuario");
 
                     b.ToTable("Cultivos");
                 });
@@ -349,15 +350,7 @@ namespace CornwayWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CornwayWeb.Model.Usuarios", "Usuarios")
-                        .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("TiposCultivo");
-
-                    b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("CornwayWeb.Model.GestionesCultivo", b =>

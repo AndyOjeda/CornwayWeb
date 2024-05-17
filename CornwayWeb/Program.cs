@@ -18,29 +18,27 @@ builder.Services.AddSwaggerGen();
 
 //add scoped repositories
 builder.Services.AddScoped<ICosechaRepository, CosechaRepository>();
-builder.Services.AddScoped<ICultivoRepository, CultivoRepository>();
-builder.Services.AddScoped<IGestionCultivoRepository, GestionCultivoRepository>();
+builder.Services.AddScoped<ICultivosRepository, CultivosRepository>();
+builder.Services.AddScoped<IGestionesCultivoRepository, GestionesCultivoRepository>();
 builder.Services.AddScoped<IInsumoCultivoRepository,  InsumoCultivoRepository>();
-builder.Services.AddScoped<IInsumoGestionCultivoRepository, InsumoGestionCultivoRepository>();
 builder.Services.AddScoped<IPartidaRepository, PartidaRepository>();
-builder.Services.AddScoped<ITipoCultivoRepository, TipoCultivoRepository>();
-builder.Services.AddScoped<ITipoGestionCultivoRepository, TipoGestionCultivoRepository>();
-builder.Services.AddScoped<ITipoInsumoGestionCultivoRepository, TipoInsumoGestionCultivoRepository>();
+builder.Services.AddScoped<ITiposCultivoRepository, TiposCultivoRepository>();
+builder.Services.AddScoped<ITiposGestionCultivoRepository, TiposGestionCultivoRepository>();
+builder.Services.AddScoped<ITiposInsumoGestionCultivoRepository, TiposInsumoGestionCultivoRepository>();
 builder.Services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
-builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IUsuariosRepository, UsuariosRepository>();
 
 //add scoped services
 builder.Services.AddScoped<ICosechaService, CosechaService>();
-builder.Services.AddScoped<ICultivoService, CultivoService>();
-builder.Services.AddScoped<IGestionCultivoService, GestionCultivoService>();
+builder.Services.AddScoped<ICultivosService, CultivosService>();
+builder.Services.AddScoped<IGestionesCultivoService, GestionesCultivoService>();
 builder.Services.AddScoped<IInsumoCultivoService, InsumoCultivoService>();
-builder.Services.AddScoped<IInsumoGestionCultivoService, InsumoGestionCultivoService>();
 builder.Services.AddScoped<IPartidaService, PartidaService>();
-builder.Services.AddScoped<ITipoCultivoService, TipoCultivoService>();
-builder.Services.AddScoped<ITipoGestionCultivoService, TipoGestionCultivoService>();
-builder.Services.AddScoped<ITipoInsumoGestionCultivoService, TipoInsumoGestionCultivoService>();
+builder.Services.AddScoped<ITiposCultivoService, TiposCultivoService>();
+builder.Services.AddScoped<ITiposGestionCultivoService, TiposGestionCultivoService>();
+builder.Services.AddScoped<ITiposInsumoGestionCultivoService, TiposInsumoGestionCultivoService>();
 builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IUsuariosService, UsuariosService>();
 
 var app = builder.Build();
 
