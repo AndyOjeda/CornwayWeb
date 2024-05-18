@@ -29,8 +29,8 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateTiposCultivo(
-                                 [Required][MaxLength(50)] string Nombre
-                                 )
+            [FromForm][Required][MaxLength(50)] string Nombre
+            )
         {
             var tiposCultivo = await tiposCultivoService.CreateTiposCultivo(Nombre);
             return CreatedAtAction(nameof(GetTiposCultivo), new { id = tiposCultivo.IdTipoCultivo }, tiposCultivo);
@@ -38,9 +38,9 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutTiposCultivo(
-                                      [Required] int IdTipoCultivo,
-                                                                [MaxLength(50)] string? Nombre
-                                      )
+            [FromForm][Required] int IdTipoCultivo,
+            [FromForm][MaxLength(50)] string? Nombre
+            )
         {
             var tiposCultivo = await tiposCultivoService.PutTiposCultivo(IdTipoCultivo, Nombre);
             return Ok(tiposCultivo);

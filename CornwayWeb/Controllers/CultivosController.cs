@@ -29,10 +29,10 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateCultivo(
-            [Required] int IdUsuario,
-            [Required][MaxLength(50)] string Nombre,
-            [Required] int IdTipoCultivo,
-            [Required] int Area
+            [FromForm][Required] int IdUsuario,
+            [FromForm][Required][MaxLength(50)] string Nombre,
+            [FromForm][Required] int IdTipoCultivo,
+            [FromForm][Required] int Area
 
                                  )
         {
@@ -42,11 +42,11 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutCultivo(
-            [Required] int IdCultivo,
-            [Required] int IdUsuario,
-            [MaxLength(50)] string? Nombre,
-            [Required] int IdTipoCultivo,
-            [Required] int Area
+            [FromForm][Required] int IdCultivo,
+            [FromForm][Required] int IdUsuario,
+            [FromForm][MaxLength(50)] string? Nombre,
+            [FromForm][Required] int IdTipoCultivo,
+            [FromForm][Required] int Area
                                       )
         {
             var cultivo = await cultivosService.PutCultivo(IdCultivo, IdUsuario, Nombre, IdTipoCultivo, Area);

@@ -26,8 +26,8 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreatePartida(
-            [Required] int IdCosecha,
-            [Required] int Monedas
+            [FromForm][Required] int IdCosecha,
+            [FromForm][Required] int Monedas
             )
         {
             var partida = await partidaService.CreatePartida(IdCosecha, Monedas);
@@ -36,9 +36,9 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutPartida(
-                       [Required] int IdPartida,
-                                  [Required] int IdCosecha,
-                                  [Required] int Monedas
+                      [FromForm][Required] int IdPartida,
+                                  [FromForm][Required] int IdCosecha,
+                                  [FromForm][Required] int Monedas
                        )
         {
             var partida = await partidaService.PutPartida(IdPartida, IdCosecha, Monedas);

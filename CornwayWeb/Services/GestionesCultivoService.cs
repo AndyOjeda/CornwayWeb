@@ -12,7 +12,7 @@ namespace CornwayWeb.Services
             int IdCultivo,
             int IdTipoGestionCultivo,
             int IdInsumoGestionCultivo,
-            DateTime FechaGestion,
+            DateOnly FechaGestion,
             string Comentario
                        );
         Task<GestionesCultivo> PutGestionesCultivo(
@@ -20,7 +20,7 @@ namespace CornwayWeb.Services
             int IdCultivo,
             int IdTipoGestionCultivo,
             int IdInsumoGestionCultivo,
-            DateTime FechaGestion,
+            DateOnly FechaGestion,
             string Comentario
                        );
         Task<GestionesCultivo?> DeleteGestionesCultivo(int id);
@@ -41,7 +41,7 @@ namespace CornwayWeb.Services
                        int IdCultivo,
                                   int IdTipoGestionCultivo,
                                   int IdInsumoGestionCultivo,
-                                             DateTime FechaGestion,
+                                             DateOnly FechaGestion,
                                                         string Comentario
                                   )
         {
@@ -60,7 +60,7 @@ namespace CornwayWeb.Services
                                   int IdCultivo,
                                              int IdTipoGestionCultivo,
                                              int IdInsumoGestionCultivo,
-                                                        DateTime FechaGestion,
+                                                        DateOnly FechaGestion,
                                                                    string Comentario
                                   )
         {

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CornwayWeb.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Initial3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -172,7 +172,7 @@ namespace CornwayWeb.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdCultivo = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Fecha = table.Column<DateTime>(type: "datetime2", maxLength: 10, nullable: false),
+                    Fecha = table.Column<DateOnly>(type: "date", maxLength: 10, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -195,7 +195,7 @@ namespace CornwayWeb.Migrations
                     IdCultivo = table.Column<int>(type: "int", nullable: false),
                     IdTipoGestionCultivo = table.Column<int>(type: "int", nullable: false),
                     IdInsumoGestionCultivo = table.Column<int>(type: "int", nullable: false),
-                    FechaGestion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaGestion = table.Column<DateOnly>(type: "date", nullable: false),
                     Comentario = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },

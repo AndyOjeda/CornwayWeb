@@ -29,8 +29,8 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateTipoUsuario(
-                       [Required] string Nombre
-                       )
+            [FromForm][Required] string Nombre
+            )
         {
             var tipoUsuario = await tipoUsuarioService.CreateTipoUsuario(Nombre);
             return CreatedAtAction(nameof(GetTipoUsuario), new { id = tipoUsuario.IdTipoUsuario }, tipoUsuario);
@@ -38,9 +38,9 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutTipoUsuario(
-                       [Required] int IdTipoUsuario,
-                                  [Required] string Nombre
-                       )
+            [FromForm][Required] int IdTipoUsuario,
+            [FromForm][Required] string Nombre
+            )
         {
             var tipoUsuario = await tipoUsuarioService.PutTipoUsuario(IdTipoUsuario, Nombre);
             return Ok(tipoUsuario);

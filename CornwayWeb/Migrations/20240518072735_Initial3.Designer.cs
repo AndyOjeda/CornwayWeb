@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CornwayWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240517235051_Initial")]
-    partial class Initial
+    [Migration("20240518072735_Initial3")]
+    partial class Initial3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,9 +39,9 @@ namespace CornwayWeb.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Fecha")
+                    b.Property<DateOnly>("Fecha")
                         .HasMaxLength(10)
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("IdCultivo")
                         .HasColumnType("int");
@@ -103,8 +103,8 @@ namespace CornwayWeb.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("FechaGestion")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("FechaGestion")
+                        .HasColumnType("date");
 
                     b.Property<int>("IdCultivo")
                         .HasColumnType("int");

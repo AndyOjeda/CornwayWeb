@@ -14,7 +14,7 @@ namespace CornwayWeb.Model
         public required int IdTipoGestionCultivo { get; set; }
         [ForeignKey(nameof(InsumosGestionCultivo))]
         public required int IdInsumoGestionCultivo { get; set; }
-        public required DateTime FechaGestion { get; set; }
+        public required DateOnly FechaGestion { get; set; }
         [MaxLength(50)]
         public required string Comentario { get; set; }
 

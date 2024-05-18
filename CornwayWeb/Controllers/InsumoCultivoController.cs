@@ -28,8 +28,8 @@ namespace CornwayWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateInsumoCultivo(
 
-            [Required] int IdTipoInsumoGestionCultivo,
-            [Required] int Cantidad
+            [FromForm][Required] int IdTipoInsumoGestionCultivo,
+            [FromForm][Required] int Cantidad
             )
         {
             var insumoCultivo = await insumoCultivoService.CreateInsumoCultivo(IdTipoInsumoGestionCultivo, Cantidad);
@@ -38,9 +38,9 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutInsumoCultivo(
-            [Required] int IdInsumoCultivo,
-            [Required] int? IdTipoInsumoGestionCultivo,
-            [Required] int? Cantidad
+            [FromForm][Required] int IdInsumoCultivo,
+            [FromForm][Required] int? IdTipoInsumoGestionCultivo,
+            [FromForm][Required] int? Cantidad
             )
         {
             var insumoCultivo = await insumoCultivoService.PutInsumoCultivo(IdInsumoCultivo, IdTipoInsumoGestionCultivo, Cantidad);

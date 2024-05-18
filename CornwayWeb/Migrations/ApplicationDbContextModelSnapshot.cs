@@ -36,9 +36,9 @@ namespace CornwayWeb.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Fecha")
+                    b.Property<DateOnly>("Fecha")
                         .HasMaxLength(10)
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int>("IdCultivo")
                         .HasColumnType("int");
@@ -100,8 +100,8 @@ namespace CornwayWeb.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("FechaGestion")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("FechaGestion")
+                        .HasColumnType("date");
 
                     b.Property<int>("IdCultivo")
                         .HasColumnType("int");

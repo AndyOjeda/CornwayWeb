@@ -13,7 +13,7 @@ namespace CornwayWeb.Model
 		public required int IdCultivo { get; set; }
 		public required int Cantidad { get; set; }
 		[MaxLength(10)]
-		public required DateTime Fecha { get; set; }
+		public required DateOnly Fecha { get; set; }
 
 		public virtual Cultivos? Cultivo { get; set; }
 		[JsonIgnore]

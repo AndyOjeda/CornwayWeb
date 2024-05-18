@@ -29,9 +29,9 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateCosecha(
-            [Required] int IdCultivo,
-            [Required] int Cantidad,
-            [Required] DateTime Fecha
+            [FromForm][Required] int IdCultivo,
+            [FromForm][Required] int Cantidad,
+            [FromForm][Required] DateOnly Fecha
             )
         {
             var cosecha = await cosechaService.CreateCosecha(IdCultivo, Cantidad, Fecha);
@@ -40,10 +40,10 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutCosecha(
-                       [Required] int IdCosecha,
-                                  [Required] int? IdCultivo,
-                                             [Required] int? Cantidad,
-                                                        [Required] DateTime? Fecha
+                       [FromForm][Required] int IdCosecha,
+                                  [FromForm][Required] int? IdCultivo,
+                                             [FromForm][Required] int? Cantidad,
+                                                        [FromForm][Required] DateOnly? Fecha
                        )
         {
             var cosecha = await cosechaService.PutCosecha(IdCosecha, IdCultivo, Cantidad, Fecha);

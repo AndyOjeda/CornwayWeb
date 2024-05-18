@@ -30,7 +30,7 @@ namespace CornwayWeb.Services
         }
 
         public async Task<TiposCultivo> CreateTiposCultivo(
-                                   string Nombre
+            string Nombre
                                    )
         {
             return await tiposCultivoRepository.CreateTiposCultivo(new TiposCultivo
@@ -40,8 +40,8 @@ namespace CornwayWeb.Services
         }
 
         public async Task<TiposCultivo> PutTiposCultivo(
-                                  int IdTipoCultivo,
-                                                                   string? Nombre
+            int IdTipoCultivo,
+            string? Nombre
                                   )
         {
             TiposCultivo? tiposCultivo = await tiposCultivoRepository.GetTiposCultivo(IdTipoCultivo);

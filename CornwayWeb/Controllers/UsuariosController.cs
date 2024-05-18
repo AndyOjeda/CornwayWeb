@@ -29,11 +29,11 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateUsuario(
-                                 [Required][MaxLength(50)] string Nombres,
-                                                      [Required][MaxLength(50)] string Apellidos,
-                                                                           [Required][MaxLength(50)] string Correo,
-                                                                                                [Required][MaxLength(50)] string Clave,
-                                                                                                                     [Required] int IdTipoUsuario
+            [FromForm][Required][MaxLength(50)] string Nombres,
+            [FromForm][Required][MaxLength(50)] string Apellidos,
+            [FromForm][Required][MaxLength(50)] string Correo,
+            [FromForm][Required][MaxLength(50)] string Clave,
+            [FromForm][Required] int IdTipoUsuario
                                  )
         {
             var usuario = await usuariosService.CreateUsuario(Nombres, Apellidos, Correo, Clave, IdTipoUsuario);
@@ -42,12 +42,12 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutUsuario(
-            [Required] int IdUsuario,
-                                         [MaxLength(50)] string? Nombres,
-                                                            [MaxLength(50)] string? Apellidos,
-                                                                              [MaxLength(50)] string? Correo,
-                                                                                             [MaxLength(50)] string? Clave,
-                                                                                                                [Required] int IdTipoUsuario
+            [FromForm][Required] int IdUsuario,
+            [FromForm][MaxLength(50)] string? Nombres,
+            [FromForm][MaxLength(50)] string? Apellidos,
+            [FromForm][MaxLength(50)] string? Correo,
+            [FromForm][MaxLength(50)] string? Clave,
+            [FromForm][Required] int IdTipoUsuario
                                       )
         {
             var usuario = await usuariosService.PutUsuario(IdUsuario, Nombres, Apellidos, Correo, Clave, IdTipoUsuario);

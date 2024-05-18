@@ -29,10 +29,10 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateInsumoGestionCultivo(
-            [Required] int IdInsumoCultivo,
-            [Required][MaxLength(50)] string Nombre,
-            [Required] double Dosis,
-            [Required][MaxLength(50)] string Unidad
+            [FromForm][Required] int IdInsumoCultivo,
+            [FromForm][Required][MaxLength(50)] string Nombre,
+            [FromForm][Required] double Dosis,
+            [FromForm][Required][MaxLength(50)] string Unidad
                                              )
         {
             var insumoGestionCultivo = await insumosGestionCultivoService.CreateInsumoGestionCultivo(IdInsumoCultivo, Nombre, Dosis, Unidad);
@@ -41,11 +41,11 @@ namespace CornwayWeb.Controllers
 
         [HttpPut]
         public async Task<IActionResult> PutInsumoGestionCultivo(
-            [Required] int IdInsumoGestionCultivo,
-            [Required] int IdInsumoCultivo,
-            [MaxLength(50)] string Nombre,
-            [Required] double Dosis,
-            [MaxLength(50)] string Unidad
+            [FromForm][Required] int IdInsumoGestionCultivo,
+            [FromForm][Required] int IdInsumoCultivo,
+            [FromForm][MaxLength(50)] string Nombre,
+            [FromForm][Required] double Dosis,
+            [FromForm][MaxLength(50)] string Unidad
                                                     )
         {
             var insumoGestionCultivo = await insumosGestionCultivoService.PutInsumoGestionCultivo(IdInsumoGestionCultivo, IdInsumoCultivo, Nombre, Dosis, Unidad);
