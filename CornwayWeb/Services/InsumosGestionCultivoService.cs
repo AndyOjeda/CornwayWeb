@@ -8,7 +8,6 @@ namespace CornwayWeb.Services
         Task<IEnumerable<InsumosGestionCultivo>> GetInsumosGestionCultivos();
         Task<InsumosGestionCultivo?> GetInsumoGestionCultivo(int id);
         Task<InsumosGestionCultivo> CreateInsumoGestionCultivo(
-            int IdGestionCultivo,
             int IdInsumoCultivo,
             string Nombre,
             double Dosis,
@@ -16,7 +15,6 @@ namespace CornwayWeb.Services
                        );
         Task<InsumosGestionCultivo> PutInsumoGestionCultivo(
             int IdInsumoGestionCultivo,
-            int? IdGestionCultivo,
             int? IdInsumoCultivo,
             string? Nombre,
             double? Dosis,
@@ -37,7 +35,6 @@ namespace CornwayWeb.Services
         }
 
         public async Task<InsumosGestionCultivo> CreateInsumoGestionCultivo(
-                       int IdGestionCultivo,
                                   int IdInsumoCultivo,
                                              string Nombre,
                                                         double Dosis,
@@ -46,7 +43,6 @@ namespace CornwayWeb.Services
         {
             return await insumosGestionCultivoRepository.CreateInsumosGestionCultivo(new InsumosGestionCultivo
             {
-                IdGestionCultivo = IdGestionCultivo,
                 IdInsumoCultivo = IdInsumoCultivo,
                 Nombre = Nombre,
                 Dosis = Dosis,
@@ -56,7 +52,6 @@ namespace CornwayWeb.Services
 
         public async Task<InsumosGestionCultivo> PutInsumoGestionCultivo(
                        int IdInsumoGestionCultivo,
-                                  int? IdGestionCultivo,
                                              int? IdInsumoCultivo,
                                                         string? Nombre,
                                                                    double? Dosis,
@@ -66,7 +61,6 @@ namespace CornwayWeb.Services
             InsumosGestionCultivo? insumosGestionCultivo = await insumosGestionCultivoRepository.GetInsumosGestionCultivo(IdInsumoGestionCultivo);
             if (insumosGestionCultivo == null) throw new Exception("Insumo de gestion de cultivo no encontrado");
 
-            insumosGestionCultivo.IdGestionCultivo = IdGestionCultivo ?? insumosGestionCultivo.IdGestionCultivo;
             insumosGestionCultivo.IdInsumoCultivo = IdInsumoCultivo ?? insumosGestionCultivo.IdInsumoCultivo;
             insumosGestionCultivo.Nombre = Nombre ?? insumosGestionCultivo.Nombre;
             insumosGestionCultivo.Dosis = Dosis ?? insumosGestionCultivo.Dosis;

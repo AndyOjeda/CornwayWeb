@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CornwayWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240517203228_Initial2")]
-    partial class Initial2
+    [Migration("20240517235051_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,8 @@ namespace CornwayWeb.Migrations
 
                     b.HasIndex("IdTipoCultivo");
 
+                    b.HasIndex("IdUsuario");
+
                     b.ToTable("Cultivos");
                 });
 
@@ -107,6 +109,9 @@ namespace CornwayWeb.Migrations
                     b.Property<int>("IdCultivo")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdInsumoGestionCultivo")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdTipoGestionCultivo")
                         .HasColumnType("int");
 
@@ -117,9 +122,45 @@ namespace CornwayWeb.Migrations
 
                     b.HasIndex("IdCultivo");
 
+                    b.HasIndex("IdInsumoGestionCultivo");
+
                     b.HasIndex("IdTipoGestionCultivo");
 
                     b.ToTable("GestionesCultivos");
+                });
+
+            modelBuilder.Entity("CornwayWeb.Model.InsumosGestionCultivo", b =>
+                {
+                    b.Property<int>("IdInsumoGestionCultivo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdInsumoGestionCultivo"));
+
+                    b.Property<double>("Dosis")
+                        .HasColumnType("float");
+
+                    b.Property<int>("IdInsumoCultivo")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Unidad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IdInsumoGestionCultivo");
+
+                    b.HasIndex("IdInsumoCultivo");
+
+                    b.ToTable("InsumosGestionCultivos");
                 });
 
             modelBuilder.Entity("CornwayWeb.Model.Partida", b =>
@@ -135,6 +176,9 @@ namespace CornwayWeb.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Monedas")
+                        .HasColumnType("int");
 
                     b.HasKey("IdPartida");
 
@@ -311,7 +355,15 @@ namespace CornwayWeb.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CornwayWeb.Model.Usuarios", "Usuarios")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("TiposCultivo");
+
+                    b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("CornwayWeb.Model.GestionesCultivo", b =>
@@ -319,6 +371,12 @@ namespace CornwayWeb.Migrations
                     b.HasOne("CornwayWeb.Model.Cultivos", "Cultivos")
                         .WithMany()
                         .HasForeignKey("IdCultivo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CornwayWeb.Model.InsumosGestionCultivo", "InsumosGestionCultivo")
+                        .WithMany()
+                        .HasForeignKey("IdInsumoGestionCultivo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -330,7 +388,20 @@ namespace CornwayWeb.Migrations
 
                     b.Navigation("Cultivos");
 
+                    b.Navigation("InsumosGestionCultivo");
+
                     b.Navigation("TiposGestionCultivo");
+                });
+
+            modelBuilder.Entity("CornwayWeb.Model.InsumosGestionCultivo", b =>
+                {
+                    b.HasOne("CornwayWeb.Models.InsumoCultivo", "InsumoCultivo")
+                        .WithMany()
+                        .HasForeignKey("IdInsumoCultivo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InsumoCultivo");
                 });
 
             modelBuilder.Entity("CornwayWeb.Model.Partida", b =>

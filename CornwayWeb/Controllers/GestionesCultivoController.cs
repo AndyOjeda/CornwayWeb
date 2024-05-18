@@ -31,11 +31,12 @@ namespace CornwayWeb.Controllers
         public async Task<IActionResult> CreateGestionesCultivo(
             [Required] int IdCultivo,
             [Required] int IdTipoGestionCultivo,
+            [Required] int IdInsumoGestionCultivo,
             [Required] DateTime FechaGestion,
             [Required][MaxLength(50)] string Comentario
             )
         {
-            var gestionesCultivo = await gestionesCultivoService.CreateGestionesCultivo(IdCultivo, IdTipoGestionCultivo, FechaGestion, Comentario);
+            var gestionesCultivo = await gestionesCultivoService.CreateGestionesCultivo(IdCultivo, IdTipoGestionCultivo, IdInsumoGestionCultivo, FechaGestion, Comentario);
             return CreatedAtAction(nameof(GetGestionesCultivo), new { id = gestionesCultivo.IdGestionCultivo }, gestionesCultivo);
         }
 
@@ -44,11 +45,12 @@ namespace CornwayWeb.Controllers
             [Required] int IdGestionCultivo,
             [Required] int IdCultivo,
             [Required] int IdTipoGestionCultivo,
+            [Required] int IdInsumoGestionCultivo,
             [Required] DateTime FechaGestion,
             [MaxLength(50)] string Comentario
                                                     )
         {
-            var gestionesCultivo = await gestionesCultivoService.PutGestionesCultivo(IdGestionCultivo, IdCultivo, IdTipoGestionCultivo, FechaGestion, Comentario);
+            var gestionesCultivo = await gestionesCultivoService.PutGestionesCultivo(IdGestionCultivo, IdCultivo, IdTipoGestionCultivo, IdInsumoGestionCultivo, FechaGestion, Comentario);
             return Ok(gestionesCultivo);
         }
 

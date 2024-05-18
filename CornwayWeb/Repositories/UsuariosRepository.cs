@@ -11,6 +11,7 @@ namespace CornwayWeb.Repositories
         Task<Usuarios> CreateUsuario(Usuarios usuario);
         Task<Usuarios> PutUsuario(Usuarios usuario);
         Task<Usuarios?> DeleteUsuario(int id);
+        Task<bool> Authenticate(Auth auth);
     }
     public class UsuariosRepository : IUsuariosRepository
     {
@@ -53,6 +54,12 @@ namespace CornwayWeb.Repositories
             _db.Entry(usuario).State = EntityState.Modified;
             await _db.SaveChangesAsync();
             return usuario;
+        }
+
+        public async Task<bool> Authenticate(Auth auth)
+        {
+            var usuario = await _db.Usuarios.SingleOrDefaultAsync(u => u.Correo == auth.Correo && u.Clave == auth.Clave);
+            return usuario != null;
         }
     }
 }

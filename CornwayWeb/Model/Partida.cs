@@ -10,6 +10,7 @@ namespace CornwayWeb.Model
         [Key] public int IdPartida { get; set; }
         [ForeignKey(nameof(Cosecha))]
         public required int IdCosecha { get; set; }
+        public required int Monedas { get; set; }
 
         public virtual Cosecha? Cosecha { get; set; }
         [JsonIgnore]

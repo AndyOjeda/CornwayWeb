@@ -29,28 +29,26 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateInsumoGestionCultivo(
-            [Required] int IdGestionCultivo,
             [Required] int IdInsumoCultivo,
             [Required][MaxLength(50)] string Nombre,
             [Required] double Dosis,
             [Required][MaxLength(50)] string Unidad
                                              )
         {
-            var insumoGestionCultivo = await insumosGestionCultivoService.CreateInsumoGestionCultivo(IdGestionCultivo, IdInsumoCultivo, Nombre, Dosis, Unidad);
+            var insumoGestionCultivo = await insumosGestionCultivoService.CreateInsumoGestionCultivo(IdInsumoCultivo, Nombre, Dosis, Unidad);
             return CreatedAtAction(nameof(GetInsumoGestionCultivo), new { id = insumoGestionCultivo.IdInsumoGestionCultivo }, insumoGestionCultivo);
         }
 
         [HttpPut]
         public async Task<IActionResult> PutInsumoGestionCultivo(
             [Required] int IdInsumoGestionCultivo,
-            [Required] int IdGestionCultivo,
             [Required] int IdInsumoCultivo,
             [MaxLength(50)] string Nombre,
             [Required] double Dosis,
             [MaxLength(50)] string Unidad
                                                     )
         {
-            var insumoGestionCultivo = await insumosGestionCultivoService.PutInsumoGestionCultivo(IdInsumoGestionCultivo, IdGestionCultivo, IdInsumoCultivo, Nombre, Dosis, Unidad);
+            var insumoGestionCultivo = await insumosGestionCultivoService.PutInsumoGestionCultivo(IdInsumoGestionCultivo, IdInsumoCultivo, Nombre, Dosis, Unidad);
             return Ok(insumoGestionCultivo);
         }
 

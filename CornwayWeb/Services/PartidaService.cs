@@ -8,11 +8,13 @@ namespace CornwayWeb.Services
         Task<IEnumerable<Partida>> GetPartidas();
         Task<Partida?> GetPartida(int id);
         Task<Partida> CreatePartida(
-            int IdCosecha
+            int IdCosecha,
+            int Monedas
             );
         Task<Partida> PutPartida(
             int IdPartida,
-            int? IdCosecha
+            int? IdCosecha,
+            int? Monedas
             );
         Task<Partida?> DeletePartida(int id);
     }
@@ -29,18 +31,21 @@ namespace CornwayWeb.Services
         }
 
         public async Task<Partida> CreatePartida(
-            int IdCosecha
+            int IdCosecha,
+            int Monedas
             )
         {
             return await partidaRepository.CreatePartida(new Partida
             {
-                IdCosecha = IdCosecha
+                IdCosecha = IdCosecha,
+                Monedas = Monedas
             });
         }
 
         public async Task<Partida> PutPartida(
             int IdPartida,
-            int? IdCosecha
+            int? IdCosecha,
+            int? Monedas
                        )
         {
             Partida? partida = await partidaRepository.GetPartida(IdPartida);

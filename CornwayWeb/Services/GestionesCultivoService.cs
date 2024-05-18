@@ -11,6 +11,7 @@ namespace CornwayWeb.Services
         Task<GestionesCultivo> CreateGestionesCultivo(
             int IdCultivo,
             int IdTipoGestionCultivo,
+            int IdInsumoGestionCultivo,
             DateTime FechaGestion,
             string Comentario
                        );
@@ -18,6 +19,7 @@ namespace CornwayWeb.Services
             int IdGestionCultivo,
             int IdCultivo,
             int IdTipoGestionCultivo,
+            int IdInsumoGestionCultivo,
             DateTime FechaGestion,
             string Comentario
                        );
@@ -38,6 +40,7 @@ namespace CornwayWeb.Services
         public async Task<GestionesCultivo> CreateGestionesCultivo(
                        int IdCultivo,
                                   int IdTipoGestionCultivo,
+                                  int IdInsumoGestionCultivo,
                                              DateTime FechaGestion,
                                                         string Comentario
                                   )
@@ -46,6 +49,7 @@ namespace CornwayWeb.Services
             {
                 IdCultivo = IdCultivo,
                 IdTipoGestionCultivo = IdTipoGestionCultivo,
+                IdInsumoGestionCultivo = IdInsumoGestionCultivo,
                 FechaGestion = FechaGestion,
                 Comentario = Comentario
             });
@@ -55,6 +59,7 @@ namespace CornwayWeb.Services
                        int IdGestionCultivo,
                                   int IdCultivo,
                                              int IdTipoGestionCultivo,
+                                             int IdInsumoGestionCultivo,
                                                         DateTime FechaGestion,
                                                                    string Comentario
                                   )
@@ -64,6 +69,7 @@ namespace CornwayWeb.Services
 
             gestionesCultivo.IdCultivo = IdCultivo;
             gestionesCultivo.IdTipoGestionCultivo = IdTipoGestionCultivo;
+            gestionesCultivo.IdInsumoGestionCultivo = IdInsumoGestionCultivo;
             gestionesCultivo.FechaGestion = FechaGestion;
             gestionesCultivo.Comentario = Comentario;
             return await gestionesCultivoRepository.PutGestionesCultivo(gestionesCultivo);

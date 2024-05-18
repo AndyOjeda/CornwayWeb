@@ -68,29 +68,6 @@ namespace CornwayWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cultivos",
-                columns: table => new
-                {
-                    IdCultivo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdUsuario = table.Column<int>(type: "int", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IdTipoCultivo = table.Column<int>(type: "int", nullable: false),
-                    Area = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cultivos", x => x.IdCultivo);
-                    table.ForeignKey(
-                        name: "FK_Cultivos_TiposCultivo_IdTipoCultivo",
-                        column: x => x.IdTipoCultivo,
-                        principalTable: "TiposCultivo",
-                        principalColumn: "IdTipoCultivo",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "InsumoCultivos",
                 columns: table => new
                 {
@@ -136,6 +113,58 @@ namespace CornwayWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "InsumosGestionCultivos",
+                columns: table => new
+                {
+                    IdInsumoGestionCultivo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdInsumoCultivo = table.Column<int>(type: "int", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Dosis = table.Column<double>(type: "float", nullable: false),
+                    Unidad = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InsumosGestionCultivos", x => x.IdInsumoGestionCultivo);
+                    table.ForeignKey(
+                        name: "FK_InsumosGestionCultivos_InsumoCultivos_IdInsumoCultivo",
+                        column: x => x.IdInsumoCultivo,
+                        principalTable: "InsumoCultivos",
+                        principalColumn: "IdInsumoCultivo",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cultivos",
+                columns: table => new
+                {
+                    IdCultivo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IdTipoCultivo = table.Column<int>(type: "int", nullable: false),
+                    Area = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cultivos", x => x.IdCultivo);
+                    table.ForeignKey(
+                        name: "FK_Cultivos_TiposCultivo_IdTipoCultivo",
+                        column: x => x.IdTipoCultivo,
+                        principalTable: "TiposCultivo",
+                        principalColumn: "IdTipoCultivo",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cultivos_Usuarios_IdUsuario",
+                        column: x => x.IdUsuario,
+                        principalTable: "Usuarios",
+                        principalColumn: "IdUsuario",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cosechas",
                 columns: table => new
                 {
@@ -158,12 +187,49 @@ namespace CornwayWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GestionesCultivos",
+                columns: table => new
+                {
+                    IdGestionCultivo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdCultivo = table.Column<int>(type: "int", nullable: false),
+                    IdTipoGestionCultivo = table.Column<int>(type: "int", nullable: false),
+                    IdInsumoGestionCultivo = table.Column<int>(type: "int", nullable: false),
+                    FechaGestion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Comentario = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GestionesCultivos", x => x.IdGestionCultivo);
+                    table.ForeignKey(
+                        name: "FK_GestionesCultivos_Cultivos_IdCultivo",
+                        column: x => x.IdCultivo,
+                        principalTable: "Cultivos",
+                        principalColumn: "IdCultivo",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GestionesCultivos_InsumosGestionCultivos_IdInsumoGestionCultivo",
+                        column: x => x.IdInsumoGestionCultivo,
+                        principalTable: "InsumosGestionCultivos",
+                        principalColumn: "IdInsumoGestionCultivo",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GestionesCultivos_TiposGestionCultivos_IdTipoGestionCultivo",
+                        column: x => x.IdTipoGestionCultivo,
+                        principalTable: "TiposGestionCultivos",
+                        principalColumn: "IdTipoGestionCultivo",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Partidas",
                 columns: table => new
                 {
                     IdPartida = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdCosecha = table.Column<int>(type: "int", nullable: false),
+                    Monedas = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -188,9 +254,34 @@ namespace CornwayWeb.Migrations
                 column: "IdTipoCultivo");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cultivos_IdUsuario",
+                table: "Cultivos",
+                column: "IdUsuario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GestionesCultivos_IdCultivo",
+                table: "GestionesCultivos",
+                column: "IdCultivo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GestionesCultivos_IdInsumoGestionCultivo",
+                table: "GestionesCultivos",
+                column: "IdInsumoGestionCultivo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GestionesCultivos_IdTipoGestionCultivo",
+                table: "GestionesCultivos",
+                column: "IdTipoGestionCultivo");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_InsumoCultivos_IdTipoInsumoGestionCultivo",
                 table: "InsumoCultivos",
                 column: "IdTipoInsumoGestionCultivo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InsumosGestionCultivos_IdInsumoCultivo",
+                table: "InsumosGestionCultivos",
+                column: "IdInsumoCultivo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Partidas_IdCosecha",
@@ -207,31 +298,37 @@ namespace CornwayWeb.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "InsumoCultivos");
+                name: "GestionesCultivos");
 
             migrationBuilder.DropTable(
                 name: "Partidas");
 
             migrationBuilder.DropTable(
+                name: "InsumosGestionCultivos");
+
+            migrationBuilder.DropTable(
                 name: "TiposGestionCultivos");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
-
-            migrationBuilder.DropTable(
-                name: "TiposInsumoGestionCultivos");
 
             migrationBuilder.DropTable(
                 name: "Cosechas");
 
             migrationBuilder.DropTable(
-                name: "TipoUsuarios");
+                name: "InsumoCultivos");
 
             migrationBuilder.DropTable(
                 name: "Cultivos");
 
             migrationBuilder.DropTable(
+                name: "TiposInsumoGestionCultivos");
+
+            migrationBuilder.DropTable(
                 name: "TiposCultivo");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
+                name: "TipoUsuarios");
         }
     }
 }

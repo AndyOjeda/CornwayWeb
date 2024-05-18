@@ -9,8 +9,6 @@ namespace CornwayWeb.Model
     public class InsumosGestionCultivo
     {
         [Key] public int IdInsumoGestionCultivo { get; set; }
-        [ForeignKey(nameof(GestionesCultivo))]
-        public required int IdGestionCultivo { get; set; }
         [ForeignKey(nameof(InsumoCultivo))]
         public required int IdInsumoCultivo { get; set; }
         [MaxLength(50)]
@@ -20,7 +18,6 @@ namespace CornwayWeb.Model
         public required string Unidad { get; set; }
 
 
-        public virtual GestionesCultivo? GestionesCultivo { get; set; }
         public virtual InsumoCultivo? InsumoCultivo { get; set; }
         [JsonIgnore]
         public bool IsActive { get; set; } = true;

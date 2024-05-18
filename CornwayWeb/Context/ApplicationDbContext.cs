@@ -42,7 +42,6 @@ namespace CornwayWeb.Context
             modelBuilder.Entity<TiposInsumoGestionCultivo>().HasQueryFilter(e => e.IsActive);
             modelBuilder.Entity<TipoUsuario>().HasQueryFilter(e => e.IsActive);
             modelBuilder.Entity<Usuarios>().HasQueryFilter(e => e.IsActive);
-
         }
     }
 }

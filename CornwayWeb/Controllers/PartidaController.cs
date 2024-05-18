@@ -26,20 +26,22 @@ namespace CornwayWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreatePartida(
-            [Required]  int IdCosecha
+            [Required] int IdCosecha,
+            [Required] int Monedas
             )
         {
-            var partida = await partidaService.CreatePartida(IdCosecha);
+            var partida = await partidaService.CreatePartida(IdCosecha, Monedas);
             return CreatedAtAction(nameof(GetPartida), new { id = partida.IdPartida }, partida);
         }
 
         [HttpPut]
         public async Task<IActionResult> PutPartida(
                        [Required] int IdPartida,
-                                  [Required] int IdCosecha
+                                  [Required] int IdCosecha,
+                                  [Required] int Monedas
                        )
         {
-            var partida = await partidaService.PutPartida(IdPartida, IdCosecha);
+            var partida = await partidaService.PutPartida(IdPartida, IdCosecha, Monedas);
             return Ok(partida);
         }
 

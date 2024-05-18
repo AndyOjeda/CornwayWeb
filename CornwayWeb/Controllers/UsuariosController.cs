@@ -64,5 +64,17 @@ namespace CornwayWeb.Controllers
             }
             return Ok(usuario);
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Authenticate([FromForm] Auth auth)
+        {
+            var result = await usuariosService.Authenticate(auth);
+            if (result)
+            {
+                return Ok();
+            }
+            return Unauthorized();
+
+        }
     }
 }
